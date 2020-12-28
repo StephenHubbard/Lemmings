@@ -14,8 +14,10 @@ public class CameraController : MonoBehaviour
 
     private Vector2 previousInput;
     private Vector2 previousZoomInput;
+    private Vector2 previousRotateInput;
 
     private Controls controls;
+
 
     public void Start()
     {
@@ -27,9 +29,11 @@ public class CameraController : MonoBehaviour
         controls.Player.Zoom.performed += SetPreviousZoomInput;
         controls.Player.Zoom.canceled += SetPreviousZoomInput;
 
+        controls.Player.Rotate.performed += SetPreviousRotateInput;
+        controls.Player.Rotate.canceled += SetPreviousRotateInput;
+
         controls.Enable();
     }
-
     
 
     private void Update()
@@ -37,6 +41,16 @@ public class CameraController : MonoBehaviour
         UpdateCameraPosition();
 
         ZoomInAndOut();
+
+        // Rotates in world space and affects WASD movement. 
+        //RotateCamera();
+    }
+
+    private void RotateCamera()
+    {
+        if (previousRotateInput == Vector2.zero) { return; }
+
+        playerCameraTransform.Rotate(0f, -previousRotateInput.y, 0f, Space.World);
     }
 
     private void ZoomInAndOut()
@@ -73,5 +87,10 @@ public class CameraController : MonoBehaviour
     private void SetPreviousZoomInput(InputAction.CallbackContext ctx)
     {
         previousZoomInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void SetPreviousRotateInput(InputAction.CallbackContext ctx)
+    {
+        previousRotateInput = ctx.ReadValue<Vector2>();
     }
 }
