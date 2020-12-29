@@ -9,13 +9,16 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private GameObject goalPointPrefab = null;
     [SerializeField] private LayerMask floorMask = new LayerMask();
 
+
     private GameObject buildingPreviewInstance;
     private Camera mainCamera;
+    private GameHandler gameHandler;
 
 
     private void Start()
     {
         mainCamera = Camera.main;
+        gameHandler = FindObjectOfType<GameHandler>();
     }
 
     private void Update()
@@ -38,6 +41,7 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             buildingPreviewInstance.SetActive(true);
         }
     }
+
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -63,5 +67,10 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Destroy(buildingPreviewInstance);
 
         newGoalPoint.GetComponent<GoalPoint>().HandleIsPlaced();
+
+        int goalPointPrefabId = goalPointPrefab.GetComponent<GoalPoint>().getId();
+
+        gameHandler.HandleGoalPointsArray(goalPointPrefabId);
+
     }
 }

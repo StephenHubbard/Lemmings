@@ -11,22 +11,24 @@ public class LemmingMovement : MonoBehaviour
     [SerializeField] private GoalPoint goalPoint;
     [SerializeField] private int lemmingID = 0;
 
-
-
-
     private bool hitPoint = false;
     private int thisGoalPointID;
 
 
     private void Update()
     {
+        // probably don't wanna put findgoal in update()
         FindGoal();
         MoveToPoint();
     }
 
+    public int GetLemmingID()
+    {
+        return lemmingID;
+    }
+
     private void FindGoal()
     {
-
         if (!FindObjectOfType<GoalPoint>()) { return; }
 
         goalPointsArray = FindObjectsOfType<GoalPoint>();
@@ -40,6 +42,7 @@ public class LemmingMovement : MonoBehaviour
                 goalPoint = thisGoalPoint;
             }
         }
+        
 
     }
 
@@ -54,7 +57,8 @@ public class LemmingMovement : MonoBehaviour
             hitPoint = true;
         }
 
-        if (hitPoint == true) { return; }
+        // not sure if I need
+        //if (hitPoint == true) { return; }
 
         transform.position = Vector3.MoveTowards(transform.position, goalPoint.transform.position, moveSpeed * Time.deltaTime);
 

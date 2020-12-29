@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float screenBorderThickness = 10f;
     [SerializeField] private Vector2 screenXLimits = Vector2.zero;
     [SerializeField] private Vector2 screenZLimits = Vector2.zero;
-    [SerializeField] private Vector2 zoomLimits = Vector2.zero;
+    //[SerializeField] private Vector2 zoomLimits = Vector2.zero;
 
     private Vector2 previousInput;
     private Vector2 previousZoomInput;
@@ -48,6 +48,8 @@ public class CameraController : MonoBehaviour
 
     private void RotateCamera()
     {
+        // not working as intended 
+
         if (previousRotateInput == Vector2.zero) { return; }
 
         playerCameraTransform.Rotate(0f, -previousRotateInput.y, 0f, Space.World);
@@ -61,7 +63,7 @@ public class CameraController : MonoBehaviour
 
         pos += new Vector3(0f, -previousZoomInput.y, previousZoomInput.y) * .5f * Time.deltaTime;
 
-        pos.y = Mathf.Clamp(pos.y, zoomLimits.x, zoomLimits.y);
+        //pos.y = Mathf.Clamp(pos.y, zoomLimits.x, zoomLimits.y);
 
         playerCameraTransform.position = pos;
 
