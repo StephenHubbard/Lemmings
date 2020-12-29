@@ -5,9 +5,13 @@ using TMPro;
 
 public class GoalPoint : MonoBehaviour
 {
-    [SerializeField] private TMP_Text lemmingSavedText = null;
 
-    private int lemmingsSaved = 0;
+    private SpawnPad spawnPad;
+
+    private void Awake()
+    {
+        spawnPad = FindObjectOfType<SpawnPad>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,8 +24,7 @@ public class GoalPoint : MonoBehaviour
 
     private void LemmingSaved()
     {
-        lemmingsSaved++;
-
-        lemmingSavedText.text = $"Lemmings Saved: {lemmingsSaved.ToString()}";
+        spawnPad.lemmingsSaved++;
+        spawnPad.UpdateLemmingsSavedText();
     }
 }

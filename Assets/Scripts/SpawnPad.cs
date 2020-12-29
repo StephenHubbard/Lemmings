@@ -9,12 +9,23 @@ public class SpawnPad : MonoBehaviour
     [SerializeField] Transform spawnPoint = null;
     [SerializeField] GameObject lemmingPrefab = null;
     [SerializeField] private int amountToSpawn = 3;
+    [SerializeField] private TMP_Text lemmingsToSpawnText = null;
     [SerializeField] private TMP_Text lemmingSavedText = null;
+
+    public int lemmingsSaved = 0;
+
+
+    private GoalPoint goalPoint;
 
 
     private void Start()
     {
         StartCoroutine(SpawnLemming());
+    }
+
+    private void Update()
+    {
+
     }
 
     private IEnumerator SpawnLemming()
@@ -33,6 +44,11 @@ public class SpawnPad : MonoBehaviour
 
     private void UpdateLemmingsToSpawnText()
     {
-        lemmingSavedText.text = $"Lemmings To Spawn: {amountToSpawn.ToString()}";
+        lemmingsToSpawnText.text = $"Lemmings To Spawn: {amountToSpawn.ToString()}";
+    }
+
+    public void UpdateLemmingsSavedText()
+    {
+        lemmingSavedText.text = $"Lemmings Saved: {lemmingsSaved.ToString()}";
     }
 }

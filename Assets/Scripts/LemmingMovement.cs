@@ -12,16 +12,27 @@ public class LemmingMovement : MonoBehaviour
 
     private void Awake()
     {
-        goal = FindObjectOfType<GoalPoint>().transform;
+
     }
 
     private void Update()
     {
+        FindGoal();
         MoveToPoint();
+    }
+
+    private void FindGoal()
+    {
+        if (!FindObjectOfType<GoalPoint>()) { return; }
+
+        goal = FindObjectOfType<GoalPoint>().transform;
+
     }
 
     private void MoveToPoint()
     {
+        if (goal == null) { return; }
+
         if (Vector3.Distance(transform.position, goal.position) < .2f)
         {
             hitPoint = true;
