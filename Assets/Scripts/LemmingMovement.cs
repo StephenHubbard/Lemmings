@@ -5,15 +5,18 @@ using UnityEngine.AI;
 
 public class LemmingMovement : MonoBehaviour
 {
-    [SerializeField] private Transform goal;
     [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private GameObject matchingColorGoalPoint = null;
+    [SerializeField] private GoalPoint[] goalPointsArray;
+    [SerializeField] private GoalPoint goalPoint;
+    [SerializeField] private int lemmingID = 0;
+
+
+
 
     private bool hitPoint = false;
+    private int thisGoalPointID;
 
-    private void Awake()
-    {
-
-    }
 
     private void Update()
     {
@@ -23,26 +26,39 @@ public class LemmingMovement : MonoBehaviour
 
     private void FindGoal()
     {
+
         if (!FindObjectOfType<GoalPoint>()) { return; }
 
-        goal = FindObjectOfType<GoalPoint>().transform;
+        goalPointsArray = FindObjectsOfType<GoalPoint>();
+
+        foreach (GoalPoint thisGoalPoint in goalPointsArray)
+        {
+            thisGoalPointID = thisGoalPoint.getId();
+
+            if (thisGoalPointID == lemmingID)
+            {
+                goalPoint = thisGoalPoint;
+            }
+        }
 
     }
 
     private void MoveToPoint()
     {
-        if (goal == null) { return; }
+        if (goalPoint == null) { return; }
 
-        if (Vector3.Distance(transform.position, goal.position) < .2f)
+        if (goalPoint.isPlaced == false) { return; }
+
+        if (Vector3.Distance(transform.position, goalPoint.transform.position) < .2f)
         {
             hitPoint = true;
         }
 
         if (hitPoint == true) { return; }
 
-        transform.position = Vector3.MoveTowards(transform.position, goal.position, moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, goalPoint.transform.position, moveSpeed * Time.deltaTime);
 
-        Vector3 rotateOnlyYAxis = new Vector3(goal.position.x, transform.position.y, goal.position.z);
+        Vector3 rotateOnlyYAxis = new Vector3(goalPoint.transform.position.x, transform.position.y, goalPoint.transform.position.z);
 
         transform.LookAt(rotateOnlyYAxis);
 

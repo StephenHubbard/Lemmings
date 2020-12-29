@@ -12,6 +12,7 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private GameObject buildingPreviewInstance;
     private Camera mainCamera;
 
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -50,15 +51,17 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (buildingPreviewInstance == null) { return; }
 
+        GameObject newGoalPoint = null;
+
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
         {
-            Instantiate(goalPointPrefab, hit.point, Quaternion.identity);
+            newGoalPoint =  Instantiate(goalPointPrefab, hit.point, Quaternion.identity);
         }
 
         Destroy(buildingPreviewInstance);
 
-
+        newGoalPoint.GetComponent<GoalPoint>().HandleIsPlaced();
     }
 }

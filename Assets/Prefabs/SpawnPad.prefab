@@ -142,5 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2714769803303221848}
-  lemmingPrefab: {fileID: 5243887715449358660, guid: 4a7ed40ec1bdada458d2120b70535eba, type: 3}
-  amountToSpawn: 3
+  lemmingPrefabs:
+  - {fileID: 5243887715449358660, guid: 4a7ed40ec1bdada458d2120b70535eba, type: 3}
+  - {fileID: 5243887715449358660, guid: 4cde859fedb180c44bd2d7140c5aacf8, type: 3}
+  - {fileID: 5243887715449358660, guid: 8e775ed318cd2f64c88c0dfc91f729bf, type: 3}
+  amountToSpawn: 5
+  lemmingsToSpawnText: {fileID: 0}
+  lemmingSavedText: {fileID: 0}
+  lemmingsSaved: 0

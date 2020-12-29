@@ -7,7 +7,7 @@ using TMPro;
 public class SpawnPad : MonoBehaviour
 {
     [SerializeField] Transform spawnPoint = null;
-    [SerializeField] GameObject lemmingPrefab = null;
+    [SerializeField] GameObject[] lemmingPrefabs = null;
     [SerializeField] private int amountToSpawn = 3;
     [SerializeField] private TMP_Text lemmingsToSpawnText = null;
     [SerializeField] private TMP_Text lemmingSavedText = null;
@@ -33,7 +33,9 @@ public class SpawnPad : MonoBehaviour
         amountToSpawn--;
         UpdateLemmingsToSpawnText();
 
-        Instantiate(lemmingPrefab, spawnPoint.position, Quaternion.identity);
+        int randomLemming = Random.Range(0, 3);
+
+        Instantiate(lemmingPrefabs[randomLemming], spawnPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
         if (amountToSpawn > 0)

@@ -5,12 +5,20 @@ using TMPro;
 
 public class GoalPoint : MonoBehaviour
 {
+    [SerializeField] private int goalPointID = 0;
+
+    public bool isPlaced = false;
 
     private SpawnPad spawnPad;
 
     private void Awake()
     {
         spawnPad = FindObjectOfType<SpawnPad>();
+    }
+
+    public int getId()
+    {
+        return goalPointID;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,5 +34,10 @@ public class GoalPoint : MonoBehaviour
     {
         spawnPad.lemmingsSaved++;
         spawnPad.UpdateLemmingsSavedText();
+    }
+
+    public void HandleIsPlaced()
+    {
+        isPlaced = true;
     }
 }
