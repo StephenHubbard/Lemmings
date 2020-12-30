@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
-public class SpawnPad : MonoBehaviour
+
+public class SpawnPad : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] Transform spawnPoint = null;
     [SerializeField] GameObject[] lemmingPrefabs = null;
@@ -20,7 +23,8 @@ public class SpawnPad : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnLemming());
+        UpdateLemmingsToSpawnText();
+        addPhysicsRaycaster();
     }
 
     private void Update()
@@ -28,8 +32,19 @@ public class SpawnPad : MonoBehaviour
 
     }
 
-    private IEnumerator SpawnLemming()
+    void addPhysicsRaycaster()
     {
+        PhysicsRaycaster physicsRaycaster = GameObject.FindObjectOfType<PhysicsRaycaster>();
+        if (physicsRaycaster == null)
+        {
+            Camera.main.gameObject.AddComponent<PhysicsRaycaster>();
+        }
+    }
+
+    private void SpawnLemming()
+    {
+        if (amountToSpawn <= 0) { return; }
+
         amountToSpawn--;
         UpdateLemmingsToSpawnText();
 
@@ -38,12 +53,7 @@ public class SpawnPad : MonoBehaviour
         Vector3 randomSpawnPoint = new Vector3(spawnPoint.position.x + getRandomNumber(), spawnPoint.position.y, spawnPoint.position.z + getRandomNumber());
 
         Instantiate(lemmingPrefabs[randomLemming], randomSpawnPoint, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
 
-        if (amountToSpawn > 0)
-        {
-            StartCoroutine(SpawnLemming());
-        }
     }
 
     private float getRandomNumber()
@@ -61,4 +71,13 @@ public class SpawnPad : MonoBehaviour
     {
         lemmingSavedText.text = $"Lemmings Saved: {lemmingsSaved.ToString()}";
     }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left) { return; }
+
+        SpawnLemming();
+    }
+
+
 }

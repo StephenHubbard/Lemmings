@@ -22,6 +22,7 @@ public class LemmingMovement : MonoBehaviour
         MoveToPoint();
     }
 
+
     public int GetLemmingID()
     {
         return lemmingID;
