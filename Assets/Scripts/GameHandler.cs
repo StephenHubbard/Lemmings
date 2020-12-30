@@ -5,7 +5,30 @@ using UnityEngine;
 public class GameHandler : MonoBehaviour
 {
     [SerializeField] private GoalPoint[] goalPointsArray;
+    [SerializeField] public int totalLemmingsToSave = 5;
+    [SerializeField] public int lemmingsLeftToSave;
 
+    public LemmingBar lemmingBar;
+
+    private void Start()
+    {
+        lemmingsLeftToSave = totalLemmingsToSave;
+        lemmingBar.SetMaxValue(totalLemmingsToSave);
+    }
+
+    void Update()
+    {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
+    public void saveLemming()
+    {
+        lemmingsLeftToSave--;
+        lemmingBar.SetFillValue(lemmingsLeftToSave);
+    }
 
     public void HandleGoalPointsArray(int goalPointPrefabId)
     {

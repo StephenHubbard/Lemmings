@@ -35,13 +35,21 @@ public class SpawnPad : MonoBehaviour
 
         int randomLemming = Random.Range(0, 3);
 
-        Instantiate(lemmingPrefabs[randomLemming], spawnPoint.position, Quaternion.identity);
+        Vector3 randomSpawnPoint = new Vector3(spawnPoint.position.x + getRandomNumber(), spawnPoint.position.y, spawnPoint.position.z + getRandomNumber());
+
+        Instantiate(lemmingPrefabs[randomLemming], randomSpawnPoint, Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
         if (amountToSpawn > 0)
         {
             StartCoroutine(SpawnLemming());
         }
+    }
+
+    private float getRandomNumber()
+    {
+        float randomNumber = Random.Range(-.4f, .4f);
+        return randomNumber;
     }
 
     private void UpdateLemmingsToSpawnText()

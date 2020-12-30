@@ -6,11 +6,9 @@ using TMPro;
 public class WinCondition : MonoBehaviour
 {
     [SerializeField] private int lemmingsLeftToWin = 3;
-    [SerializeField] private TMP_Text lemmingsLeftToWinText = null;
 
     private void Start()
     {
-        UpdateLemmingsLeftToWinText();
     }
 
     private void Update()
@@ -26,15 +24,9 @@ public class WinCondition : MonoBehaviour
         }
     }
 
-    private void UpdateLemmingsLeftToWinText()
-    {
-        lemmingsLeftToWinText.text = $"Lemmings Left To Win: {lemmingsLeftToWin.ToString()}";
-    }
-
     public void lemmingSaved()
     {
         lemmingsLeftToWin--;
-        UpdateLemmingsLeftToWinText();
     }
 
 }

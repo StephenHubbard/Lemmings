@@ -28,6 +28,11 @@ public class GoalButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         UpdateBuildingPreview();
     }
 
+    public void deleteCurrentWayPoint()
+    {
+
+    }
+
     private void UpdateBuildingPreview()
     {
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());

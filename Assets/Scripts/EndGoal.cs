@@ -9,11 +9,13 @@ public class EndGoal : MonoBehaviour
 
     private SpawnPad spawnPad;
     private WinCondition winCondition;
+    private GameHandler gameHandler;
 
     private void Awake()
     {
         spawnPad = FindObjectOfType<SpawnPad>();
         winCondition = FindObjectOfType<WinCondition>();
+        gameHandler = FindObjectOfType<GameHandler>();
     }
 
 
@@ -31,5 +33,6 @@ public class EndGoal : MonoBehaviour
         spawnPad.lemmingsSaved++;
         spawnPad.UpdateLemmingsSavedText();
         winCondition.lemmingSaved();
+        gameHandler.saveLemming();
     }
 }
