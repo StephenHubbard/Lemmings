@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7382744948010405285}
   - component: {fileID: 9039915335361752177}
   - component: {fileID: 919132149042448544}
+  - component: {fileID: 8193546132233053424}
   m_Layer: 0
   m_Name: SpawnPad
   m_TagString: Untagged
@@ -150,3 +151,17 @@ MonoBehaviour:
   lemmingsToSpawnText: {fileID: 0}
   lemmingSavedText: {fileID: 0}
   lemmingsSaved: 0
+--- !u!114 &8193546132233053424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039915335361752176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 1
+  eraseRenderer: 0

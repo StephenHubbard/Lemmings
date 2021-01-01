@@ -4,10 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using cakeslice;
 
-
-
-public class SpawnPad : MonoBehaviour, IPointerDownHandler
+public class SpawnPad : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Transform spawnPoint = null;
     [SerializeField] GameObject[] lemmingPrefabs = null;
@@ -25,6 +24,13 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler
     {
         UpdateLemmingsToSpawnText();
         addPhysicsRaycaster();
+        disableOutlineShaderComponent();
+    }
+
+    private void disableOutlineShaderComponent()
+    {
+        GetComponent<Outline>().enabled = true;
+        GetComponent<Outline>().enabled = false;
     }
 
     private void Update()
@@ -53,7 +59,6 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler
         Vector3 randomSpawnPoint = new Vector3(spawnPoint.position.x + getRandomNumber(), spawnPoint.position.y, spawnPoint.position.z + getRandomNumber());
 
         Instantiate(lemmingPrefabs[randomLemming], randomSpawnPoint, Quaternion.identity);
-
     }
 
     private float getRandomNumber()
@@ -79,5 +84,13 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler
         SpawnLemming();
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        GetComponent<Outline>().enabled = !GetComponent<Outline>().enabled;
+    }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GetComponent<Outline>().enabled = !GetComponent<Outline>().enabled;
+    }
 }
