@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 9039915335361752177}
   - component: {fileID: 919132149042448544}
   - component: {fileID: 8193546132233053424}
+  - component: {fileID: 6882332242117644241}
   m_Layer: 0
   m_Name: SpawnPad
   m_TagString: Untagged
@@ -145,11 +146,18 @@ MonoBehaviour:
   spawnPoint: {fileID: 2714769803303221848}
   lemmingPrefabs:
   - {fileID: 5243887715449358660, guid: 5950235e83068404c8e59b1d27bcf276, type: 3}
-  - {fileID: 5243887715449358660, guid: 4cde859fedb180c44bd2d7140c5aacf8, type: 3}
   - {fileID: 5243887715449358660, guid: 8e775ed318cd2f64c88c0dfc91f729bf, type: 3}
+  - {fileID: 5243887715449358660, guid: 4cde859fedb180c44bd2d7140c5aacf8, type: 3}
   amountToSpawn: 20
   lemmingsToSpawnText: {fileID: 0}
   lemmingSavedText: {fileID: 0}
+  lemmingSpawnSFX: {fileID: 6882332242117644241}
+  red_amountToSpawn: 3
+  yellow_amountToSpawn: 3
+  blue_amountToSpawn: 3
+  red_lemmingToSpawnText: {fileID: 0}
+  yellow_lemmingToSpawnText: {fileID: 0}
+  blue_lemmingToSpawnText: {fileID: 0}
   lemmingsSaved: 0
 --- !u!114 &8193546132233053424
 MonoBehaviour:
@@ -165,3 +173,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 1
   eraseRenderer: 0
+--- !u!82 &6882332242117644241
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039915335361752176}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 375e7cf6bdf92584c91b21f025a9bb77, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

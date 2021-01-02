@@ -9,6 +9,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField] public int totalLemmingsToSave = 5;
     [SerializeField] public int lemmingsLeftToSave;
     [SerializeField] private GameObject gameCompletionPrefab = null;
+    [SerializeField] private GameObject pauseMenu = null;
 
     public LemmingBar lemmingBar;
 
@@ -69,7 +70,14 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    
+    public void PauseScreen()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+    }
 
+    public void RetryButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 }

@@ -44,7 +44,6 @@ public class EndGoal : MonoBehaviour
     private void LemmingSaved()
     {
         spawnPad.lemmingsSaved++;
-        spawnPad.UpdateLemmingsSavedText();
         winCondition.lemmingSaved();
         gameHandler.saveLemming();
     }

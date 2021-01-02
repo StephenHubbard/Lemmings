@@ -10,15 +10,19 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
     [SerializeField] Transform spawnPoint = null;
     [SerializeField] GameObject[] lemmingPrefabs = null;
-    [SerializeField] private int amountToSpawn = 3;
-    [SerializeField] private TMP_Text lemmingsToSpawnText = null;
-    [SerializeField] private TMP_Text lemmingSavedText = null;
+    [SerializeField] AudioSource lemmingSpawnSFX = null;
+
+    [SerializeField] private int red_amountToSpawn = 0;
+    [SerializeField] private int yellow_amountToSpawn = 0;
+    [SerializeField] private int blue_amountToSpawn = 0;
+
+    [SerializeField] private TMP_Text red_lemmingToSpawnText = null;
+    [SerializeField] private TMP_Text yellow_lemmingToSpawnText = null;
+    [SerializeField] private TMP_Text blue_lemmingToSpawnText = null;
 
     public int lemmingsSaved = 0;
 
-
     private GoalPoint goalPoint;
-
 
     private void Start()
     {
@@ -49,19 +53,54 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 
     private void SpawnLemming()
     {
-        if (amountToSpawn <= 0) { return; }
-
-        amountToSpawn--;
-        UpdateLemmingsToSpawnText();
+        if (red_amountToSpawn <= 0 && yellow_amountToSpawn <= 0 && blue_amountToSpawn <= 0) { return; }
 
         int randomLemming = Random.Range(0, 3);
 
-        Vector3 randomSpawnPoint = new Vector3(spawnPoint.position.x + getRandomNumber(), spawnPoint.position.y, spawnPoint.position.z + getRandomNumber());
+        if (randomLemming == 0 && red_amountToSpawn <= 0)
+        {
+            SpawnLemming();
+            return;
+        }
+        if (randomLemming == 1 && yellow_amountToSpawn <= 0)
+        {
+            SpawnLemming();
+            return;
+        }
+        if (randomLemming == 2 && blue_amountToSpawn <= 0)
+        {
+            SpawnLemming();
+            return;
+        }
+
+        Vector3 randomSpawnPoint = new Vector3(spawnPoint.position.x + SpawnOffsetNumber(), spawnPoint.position.y, spawnPoint.position.z + SpawnOffsetNumber());
 
         Instantiate(lemmingPrefabs[randomLemming], randomSpawnPoint, Quaternion.identity);
+
+        lemmingSpawnSFX.Play();
+
+        reduceLemmingsToSpawn(randomLemming);
+
+        UpdateLemmingsToSpawnText();
     }
 
-    private float getRandomNumber()
+    private void reduceLemmingsToSpawn(int randomLemming)
+    {
+        if (randomLemming == 0)
+        {
+            red_amountToSpawn--;
+        }
+        else if (randomLemming == 1)
+        {
+            yellow_amountToSpawn--;
+        }
+        else if (randomLemming == 2)
+        {
+            blue_amountToSpawn--;
+        }
+    }
+
+    private float SpawnOffsetNumber()
     {
         float randomNumber = Random.Range(-.4f, .4f);
         return randomNumber;
@@ -69,12 +108,9 @@ public class SpawnPad : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 
     private void UpdateLemmingsToSpawnText()
     {
-        lemmingsToSpawnText.text = $"Lemmings To Spawn: {amountToSpawn.ToString()}";
-    }
-
-    public void UpdateLemmingsSavedText()
-    {
-        lemmingSavedText.text = $"Lemmings Saved: {lemmingsSaved.ToString()}";
+        red_lemmingToSpawnText.text = $"{red_amountToSpawn.ToString()}";
+        yellow_lemmingToSpawnText.text = $"{yellow_amountToSpawn.ToString()}";
+        blue_lemmingToSpawnText.text = $"{blue_amountToSpawn.ToString()}";
     }
 
     public void OnPointerDown(PointerEventData eventData)
