@@ -6,6 +6,7 @@ public class EndGoal : MonoBehaviour
 {
     [SerializeField] private int endGoalPointID = 0;
     [SerializeField] GameObject particlePrefab = null;
+    [SerializeField] AudioSource lemmingSavedSFX = null;
 
     private SpawnPad spawnPad;
     private WinCondition winCondition;
@@ -26,12 +27,18 @@ public class EndGoal : MonoBehaviour
             Destroy(other.gameObject);
             LemmingSaved();
             SpawnSavedParticleEffect();
+            LemmingSavedAudio();
         }
     }
 
     private void SpawnSavedParticleEffect()
     {
         Instantiate(particlePrefab, transform.position, Quaternion.LookRotation(-transform.up));
+    }
+
+    private void LemmingSavedAudio()
+    {
+        lemmingSavedSFX.Play();
     }
 
     private void LemmingSaved()

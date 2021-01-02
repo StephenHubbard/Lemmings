@@ -120,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7558361071308414954}
   - component: {fileID: 620470891383321300}
+  - component: {fileID: 620470891383321302}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,8 +156,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCameraTransform: {fileID: 7752647232420452964}
-  speed: 20
+  speed: 10
   screenBorderThickness: 10
   screenXLimits: {x: -45, y: 45}
   screenZLimits: {x: -45, y: 45}
-  zoomLimits: {x: 5, y: 20}
+--- !u!114 &620470891383321302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890954964444799451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62890f1ea77a2474d97f427ff639464d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lemmingsLeftToWin: 3

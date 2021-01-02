@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endGoalPointID: 2
-  particlePrefab: {fileID: 6354345461777933599, guid: 5ec8b0d16a5680c4183501df9bf95b17, type: 3}
+  particlePrefab: {fileID: 2758486360423971314, guid: 5ec8b0d16a5680c4183501df9bf95b17, type: 3}
+  lemmingSavedSFX: {fileID: 0}
 --- !u!1 &5848508335502085402
 GameObject:
   m_ObjectHideFlags: 0

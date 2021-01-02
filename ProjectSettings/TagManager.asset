@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Lemming
+  - FxTemporaire
+  - WayPoint
   layers:
   - Default
   - TransparentFX

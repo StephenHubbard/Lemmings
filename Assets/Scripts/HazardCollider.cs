@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HazardCollider : MonoBehaviour
 {
+    [SerializeField] GameObject explosionParticlePrefab = null;
+    [SerializeField] AudioSource lemmingDeathSFX = null;
+
+
     private Collider boxCollider;
 
     private void Start()
@@ -16,6 +20,14 @@ public class HazardCollider : MonoBehaviour
         if (other.gameObject.CompareTag("Lemming"))
         {
             Destroy(other.gameObject);
+            Instantiate(explosionParticlePrefab, other.transform.position, Quaternion.LookRotation(-transform.up));
+            playDeathSFX();
         }
+
+    }
+
+    private void playDeathSFX()
+    {
+        lemmingDeathSFX.Play();
     }
 }
