@@ -10,6 +10,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField] public int lemmingsLeftToSave;
     [SerializeField] private GameObject gameCompletionPrefab = null;
     [SerializeField] private GameObject pauseMenu = null;
+    [SerializeField] private GameObject tutorialParent = null;
 
     public LemmingBar lemmingBar;
 
@@ -80,4 +81,8 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void CloseTutorialButton()
+    {
+        tutorialParent.SetActive(false);
+    }
 }

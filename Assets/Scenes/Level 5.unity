@@ -4819,6 +4819,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2849179562860269863, guid: 11b7ba8b673e3ff449958bf214ee25c1, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2849179564593539905, guid: 11b7ba8b673e3ff449958bf214ee25c1, type: 3}
       propertyPath: m_Name
       value: Saw
